@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "build": "prisma generate && other build commands...",
+    "build": "prisma generate && node index.js",
     "start": "node index.js"
   },
   "author": "",
