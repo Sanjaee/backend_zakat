@@ -1,13 +1,14 @@
-import { createServer } from "http";
-import express from "express";
-import cors from "cors";
-import zakatRoutes from "./routes/zakatRoutes.js";
-import bodyParser from "body-parser";
-import adminRoutes from "./routes/adminRoutes.js";
-import dotenv from "dotenv";
+const express = require("express");
+const cors = require("cors");
+const zakatRoutes = require("./routes/zakatRoutes.js");
+const bodyParser = require("body-parser");
+const adminRoutes = require("./routes/adminRoutes.js");
+const dotenv = require("dotenv");
 
 // Load environment variables from .env file
 dotenv.config();
+
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -15,12 +16,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/api", zakatRoutes);
-app.use("/api", adminRoutes);
+app.use(zakatRoutes);
+app.use(adminRoutes);
 
-const server = createServer(app);
-
-server.listen(process.env.PORT || 3000, (err) => {
-  if (err) throw err;
-  console.log(`Server listening on port ${server.address().port}`);
+app.listen(port, () => {
+  console.log(`server running at ${port}`);
 });

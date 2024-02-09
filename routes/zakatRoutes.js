@@ -1,12 +1,11 @@
-import express from "express"
-import { getZakat,getZakatbyId,createZakat,updateZakatbyId,deleteZakatbyId } from "../controller/zakatController.js"
-const router = express.Router()
+const express = require("express");
+const zakatController = require("../controller/zakatController.js");
+const router = express.Router();
 
+router.get("/zakat", zakatController.getZakat);
+router.get("/zakat/:id", zakatController.getZakatbyId);
+router.post("/zakat", zakatController.createZakat);
+router.patch("/zakat/:id", zakatController.updateZakatbyId);
+router.delete("/zakat/:id", zakatController.deleteZakatbyId);
 
-router.get("/zakat",getZakat)
-router.get("/zakat/:id",getZakatbyId)
-router.post("/zakat",createZakat)
-router.patch("/zakat/:id",updateZakatbyId)
-router.delete("/zakat/:id",deleteZakatbyId)
-
-export default router;
+module.exports = router;
